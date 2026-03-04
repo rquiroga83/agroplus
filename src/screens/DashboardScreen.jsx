@@ -1,11 +1,11 @@
 import React from 'react';
 import './DashboardScreen.css';
 
-const DashboardScreen = ({ onActivateAlerts }) => {
+const DashboardScreen = ({ onActivateAlerts, onMenuClick }) => {
     return (
         <div className="dashboard-screen">
             <header className="dash-header glass-header">
-                <button className="icon-btn">
+                <button className="icon-btn" onClick={onMenuClick}>
                     <span className="material-symbols-outlined">menu</span>
                 </button>
                 <h1 className="header-title">AgroPlus Dashboard</h1>

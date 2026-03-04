@@ -20,9 +20,9 @@ function App() {
       case 'processing':
         return <ProcessingScreen onComplete={() => setCurrentScreen('dashboard')} />;
       case 'dashboard':
-        return <DashboardScreen onActivateAlerts={() => setCurrentScreen('alerts')} />;
+        return <DashboardScreen onActivateAlerts={() => setCurrentScreen('alerts')} onMenuClick={() => setIsMenuOpen(true)} />;
       case 'alerts':
-        return <AlertsScreen />;
+        return <AlertsScreen onMenuClick={() => setIsMenuOpen(true)} />;
       default:
         return <InputScreen onComplete={() => setCurrentScreen('processing')} onMenuClick={() => setIsMenuOpen(true)} />;
     }

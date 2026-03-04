@@ -17,6 +17,7 @@
     width: 100%;
     z-index: 1;
     /* Keep map below header but above background */
+    cursor: pointer;
 }
 
 /* Map controls removed in favor of leaflet ones */
@@ -158,6 +159,59 @@
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px var(--primary-dim);
+}
+
+.input-error {
+    border-color: #ef4444 !important;
+}
+
+.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-text {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-left: 0.25rem;
+    font-weight: 600;
+}
+
+.required-asterisk {
+    color: #ef4444;
+}
+
+.relative {
+    position: relative;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: calc(100% - 0.5rem);
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 30;
+    list-style: none;
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-dim);
+    color: var(--agro-dark);
 }
 
 .tags-container {

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './AlertsScreen.css';
 
-const AlertsScreen = () => {
+const AlertsScreen = ({ onMenuClick }) => {
     const [waConnected, setWaConnected] = useState(true);
 
     return (
         <div className="alerts-screen">
             {/* Header Navigation */}
             <header className="alerts-header glass-header">
-                <div className="icon-btn">
-                    <span className="material-symbols-outlined icon-agro-green">arrow_back_ios</span>
+                <div className="icon-btn" style={{ cursor: 'pointer' }} onClick={onMenuClick}>
+                    <span className="material-symbols-outlined icon-agro-green">menu</span>
                 </div>
                 <h2 className="header-title">Seguimiento y Alertas</h2>
                 <div style={{ width: '40px' }}></div> {/* Spacer */}
