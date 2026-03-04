@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Análisis de Terreno con IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec13",
+              "agro-dark": "#064e3b",
+              "terracotta": "#c2410c",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102210",
+            },
+            fontFamily: {
+              "display": ["Public Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto bg-white shadow-2xl">
+<!-- Header -->
+<div class="flex items-center bg-white/90 backdrop-blur-sm p-4 sticky top-0 z-20 justify-between border-b border-primary/10">
+<div class="text-agro-dark flex size-10 items-center justify-center rounded-full bg-primary/10">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h2 class="text-agro-dark text-lg font-bold leading-tight tracking-tight flex-1 text-center font-display">Análisis de Terreno</h2>
+<div class="flex size-10 items-center justify-end">
+<div class="size-10 rounded-full bg-terracotta/10 flex items-center justify-center text-terracotta">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+</div>
+</div>
+<!-- Map Section (Top Half) -->
+<div class="relative h-[45vh] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="High resolution satellite view of green Colombian farmland" data-location="Boyacá, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANU-9lghFclSJjaMV92JaJvPYsUHPd_QItiH92rO0VN8vBu-7gHAnjps-CeC2fjGxsWV39fqbYJWmiDlonp2yFZyTz9MdCs-zeeny7TNHqnbeDUsnzW-7fjiDWdS877Y4Ghh5DNRBaDKuRgEyx38R55o3pmQP4us_bwPiDXj9e3qv9GNi7u8bUcvG2_hkOfmgySBbYySHEKrmlbQ4J9Vp2Ok_P6ysY_M0IpPEM22hFIvS-x_UYeEXqcP5OwT0K-PbwblYT27k6PAI');">
+</div>
+<!-- Map Overlay Controls -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="flex size-10 items-center justify-center rounded-lg bg-white shadow-lg text-agro-dark">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white shadow-lg text-agro-dark border-t border-slate-100">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white shadow-lg text-agro-dark mt-2">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<!-- Floating GPS Button -->
+<div class="absolute bottom-6 left-0 right-0 flex justify-center px-6">
+<button class="flex items-center justify-center gap-2 rounded-full h-12 px-6 bg-primary text-agro-dark text-sm font-bold shadow-xl border-2 border-white">
+<span class="material-symbols-outlined text-[20px]">near_me</span>
+<span>Usar mi ubicación actual</span>
+</button>
+</div>
+</div>
+<!-- Data Entry Section (Bottom Half) -->
+<div class="relative flex-1 bg-background-light rounded-t-[32px] -mt-8 px-6 pt-8 pb-32 z-10 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-agro-dark font-display">Datos del Predio</h3>
+<span class="px-3 py-1 bg-terracotta/10 text-terracotta text-xs font-bold rounded-full uppercase tracking-wider">Paso 1 de 2</span>
+</div>
+<div class="space-y-5">
+<!-- Field Size Input -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-600 ml-1">Tamaño del predio (Hectáreas)</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">straighten</span>
+<input class="w-full h-14 pl-12 pr-4 bg-white border-2 border-slate-100 rounded-xl focus:border-primary focus:ring-0 text-agro-dark font-medium transition-colors" placeholder="Ej: 15.5" type="number"/>
+</div>
+</div>
+<!-- Crop History Searchable Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-600 ml-1">Cultivos previos (Historial)</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">potted_plant</span>
+<input class="w-full h-14 pl-12 pr-12 bg-white border-2 border-slate-100 rounded-xl focus:border-primary focus:ring-0 text-agro-dark font-medium transition-colors" placeholder="Buscar cultivo (Café, Cacao, etc)" type="text"/>
+<span class="material-symbols-outlined absolute right-4 text-slate-400">expand_more</span>
+</div>
+<!-- Selected Tags Placeholder -->
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="inline-flex items-center gap-1 px-3 py-1.5 bg-primary/20 text-agro-dark text-xs font-semibold rounded-full border border-primary/30">
+                            Café <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1.5 bg-primary/20 text-agro-dark text-xs font-semibold rounded-full border border-primary/30">
+                            Maíz <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Action Button Footer -->
+<div class="fixed bottom-16 left-0 right-0 p-6 bg-gradient-to-t from-background-light to-transparent z-20 max-w-md mx-auto">
+<button class="w-full h-16 bg-agro-dark hover:bg-agro-dark/90 text-white rounded-2xl flex items-center justify-center gap-3 shadow-2xl transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<span class="text-lg font-bold tracking-wide">Analizar Terreno con IA</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-6 py-2 flex items-center justify-between z-30 max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px] fill-1">home</span>
+<span class="text-[10px] font-bold">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[24px]">map</span>
+<span class="text-[10px] font-medium">Mapas</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[24px]">monitoring</span>
+<span class="text-[10px] font-medium">Análisis</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="text-[10px] font-medium">Perfil</span>
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .grid-pattern {
+            background-image: radial-gradient(circle, rgba(19, 236, 19, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .glow-pulse {
+            box-shadow: 0 0 20px rgba(19, 236, 19, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center p-4 justify-between bg-transparent">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-100">arrow_back_ios_new</span>
+</button>
+<h2 class="text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Procesamiento Inteligente</h2>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-6 relative grid-pattern">
+<!-- Satellite Visualization Area -->
+<div class="relative w-full max-w-xs aspect-square mb-12 flex flex-center items-center justify-center">
+<!-- Satellite Icon -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 z-20">
+<span class="material-symbols-outlined text-primary text-6xl drop-shadow-[0_0_10px_rgba(19,236,19,0.8)]">satellite_alt</span>
+</div>
+<!-- Scanning Beams -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-48 h-64 bg-gradient-to-b from-primary/30 to-transparent clip-path-polygon z-10" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+<!-- Map Representation -->
+<div class="w-full h-48 mt-24 rounded-xl border border-primary/20 bg-background-dark/50 overflow-hidden relative shadow-2xl">
+<div class="w-full h-full opacity-40 grayscale sepia brightness-50 contrast-125" data-alt="Topographic polygonal map of Colombia terrain" data-location="Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvi5r0lTJ96CU-b-1TVATdCa3F_ROelie55OqnNbNuss5clVImFcXPs1LRAoyUqtyl8CaSelhn3eYAwdG1Rgr1d3u2yE03lpViWNDRCBxZXyYLu0LwqfkwJ05tSK6D_1z9XVhTMYYDTtQzDSy6ML0oPok6oeLexxTkj3hecbeF65jaZa8q0HbtyIe0JiaWBlO7JJuRSTu2hQe3HPMvkNnddqRHTCUo4dXzgNYzUpG9Tv9sOCAAankeyyuMuWjlT9HLDZZv4nUSshw'); background-size: cover; background-position: center;">
+</div>
+<!-- Scanning Line -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/40 to-transparent h-1 w-full top-1/2"></div>
+</div>
+</div>
+<!-- High-Tech Circular Progress -->
+<div class="relative flex flex-col items-center">
+<div class="w-32 h-32 rounded-full border-4 border-primary/20 flex items-center justify-center glow-pulse relative">
+<div class="absolute inset-0 rounded-full border-t-4 border-primary animate-spin" style="animation-duration: 2s;"></div>
+<div class="flex flex-col items-center">
+<span class="text-3xl font-bold text-primary">65%</span>
+<span class="text-[10px] uppercase tracking-widest text-primary/70">Cargando</span>
+</div>
+</div>
+</div>
+<!-- Dynamic Status Text -->
+<div class="mt-12 w-full text-center space-y-4">
+<div class="space-y-2">
+<div class="flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">settings_input_antenna</span>
+<p class="text-slate-100 text-base font-medium tracking-wide">Analizando imágenes de Copernicus...</p>
+</div>
+<div class="w-full max-w-xs mx-auto h-1.5 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full shadow-[0_0_8px_rgba(19,236,19,0.6)]" style="width: 65%;"></div>
+</div>
+</div>
+<div class="px-8">
+<p class="text-primary/70 text-sm font-normal leading-relaxed animate-pulse">Cruzando datos climáticos y registros UPRA/IDEAM...</p>
+<p class="text-slate-400 text-xs font-light mt-4 italic">Esto puede tardar unos segundos debido a la alta precisión de los modelos agrometeorológicos.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Detail (Technical Footer) -->
+<footer class="p-6 flex flex-col items-center">
+<div class="flex items-center gap-4 py-2 px-4 rounded-full bg-primary/5 border border-primary/10">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center border border-background-dark">
+<span class="material-symbols-outlined text-[10px] text-primary">cloud</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center border border-background-dark">
+<span class="material-symbols-outlined text-[10px] text-primary">public</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center border border-background-dark">
+<span class="material-symbols-outlined text-[10px] text-primary">agriculture</span>
+</div>
+</div>
+<span class="text-[10px] text-primary/60 font-mono tracking-tighter">ENGINE V2.4 // SYNCING SATELLITE HUB</span>
+</div>
+<div class="h-1 w-32 bg-slate-800 rounded-full mt-6"></div>
+</footer>
+</body></html>

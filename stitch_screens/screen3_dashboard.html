@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard AgroPlus Detallado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .heatmap-overlay {
+            background: radial-gradient(circle at 30% 40%, rgba(19, 236, 19, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(234, 179, 8, 0.3) 0%, transparent 40%),
+                        radial-gradient(circle at 10% 80%, rgba(239, 68, 68, 0.3) 0%, transparent 30%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-3 flex items-center justify-between">
+<button class="p-2 rounded-lg hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">menu</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">AgroPlus Dashboard</h1>
+<button class="p-2 rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary font-bold">account_circle</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto px-4 py-6 space-y-6 pb-24">
+<!-- Section 1: ¿Qué sembrar? -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">potted_plant</span>
+                    ¿Qué sembrar?
+                </h2>
+<span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Top Recomendados</span>
+</div>
+<div class="space-y-3">
+<!-- Crop 1 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">restaurant</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end">
+<h3 class="font-bold text-lg">Papa</h3>
+<span class="text-primary font-bold text-sm">90% Éxito</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Crop 2 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">eco</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end">
+<h3 class="font-bold text-lg">Yuca</h3>
+<span class="text-primary font-bold text-sm">82% Éxito</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Crop 3 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">coffee</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end">
+<h3 class="font-bold text-lg">Café</h3>
+<span class="text-primary font-bold text-sm">75% Éxito</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: ¿Cuándo sembrar? -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                ¿Cuándo sembrar?
+            </h2>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl shadow-sm border border-primary/5">
+<p class="text-sm text-slate-500 mb-4">Ventana ideal para: <span class="font-bold text-slate-900 dark:text-white">Papa Sabanera</span></p>
+<div class="relative pt-6 pb-2">
+<!-- Months Labels -->
+<div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase mb-2">
+<span>Marzo</span>
+<span>Abril</span>
+<span>Mayo</span>
+<span>Junio</span>
+</div>
+<!-- Timeline Bar -->
+<div class="h-10 w-full bg-slate-100 dark:bg-slate-800 rounded-lg relative overflow-hidden flex items-center">
+<!-- Shaded Window -->
+<div class="absolute left-[20%] right-[40%] h-full bg-primary/30 border-x-2 border-primary flex items-center justify-center">
+<span class="text-[10px] font-bold text-primary-dark uppercase tracking-tighter">Ventana Ideal</span>
+</div>
+<!-- Current Marker -->
+<div class="absolute left-[15%] h-full w-0.5 bg-red-500 z-10 flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-red-500 -mt-1"></div>
+</div>
+</div>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500 text-sm">info</span>
+<p class="text-xs text-slate-500">Condiciones óptimas de lluvia esperadas en Abril.</p>
+</div>
+</div>
+</section>
+<!-- Section 3: ¿Dónde sembrar? -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">map</span>
+                ¿Dónde sembrar?
+            </h2>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-primary/5 overflow-hidden">
+<div class="relative h-48 w-full bg-cover bg-center" data-alt="Satellite view of a lush green farm field" data-location="Boyacá, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA01jRBevAU1vgsS7-L4xFgNNcYe4pzMb6b2FwMXhVPxaxsmxLmUy_4trOIgQKsLAETsffHQDq6_DDb6VEbCd0XNuuZoAdW1J14Dtl2ZKbUYxnm85hMKDzfQZYrPbj8E7j2oBipEEh8R1hDlFVVt8LiGwGCFy5WEyv6d2KArlATuE1W3GMoo0gjiqpZrcXqX0UuK__0n9fUbxbr_rWHr9LkTNaRamXTgTh0VNfj7k6-L7SqriHyJtMgZPesQtB-nRroXktMmcJMDJE');">
+<!-- Heatmap Overlay Layer -->
+<div class="absolute inset-0 heatmap-overlay"></div>
+<!-- Legend Overlay -->
+<div class="absolute bottom-3 right-3 bg-white/90 dark:bg-slate-900/90 p-2 rounded-lg text-[10px] space-y-1 shadow-lg backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span>Nutrientes Óptimos</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+<span>Suelo Seco</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-500"></div>
+<span>Riesgo Erosión</span>
+</div>
+</div>
+</div>
+<div class="p-4 flex justify-between items-center">
+<div>
+<h4 class="font-bold text-sm">Lote 'La Esperanza'</h4>
+<p class="text-xs text-slate-500">Área: 4.5 Hectáreas</p>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                        Ver análisis completo
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Button -->
+<div class="pt-4">
+<button class="w-full py-4 px-6 rounded-xl border-2 border-[#b45a3c] text-[#b45a3c] font-bold flex items-center justify-center gap-3 bg-[#b45a3c]/5 active:bg-[#b45a3c]/10 transition-colors">
+<span class="material-symbols-outlined">notifications_active</span>
+                Activar Alertas de Cultivo
+            </button>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 px-6 py-2 pb-6 flex justify-between items-center z-20">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-bold" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">wb_sunny</span>
+<span class="text-[10px] font-medium">Clima</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] font-medium">Mi Lote</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-[10px] font-medium">Alertas</span>
+</a>
+</nav>
+</body></html>

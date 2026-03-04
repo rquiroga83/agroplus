@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec13",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102210",
+              "terracotta": "#cc6633",
+              "agro-green": "#2d5a27",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen pb-24">
+<!-- Status Bar (iOS Style) -->
+<div class="flex justify-between items-center px-8 pt-4 pb-2 bg-white dark:bg-background-dark/50 sticky top-0 z-50">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[18px]">battery_full</span>
+</div>
+</div>
+<!-- Header Navigation -->
+<div class="flex items-center bg-white dark:bg-background-dark p-4 justify-between border-b border-agro-green/10">
+<div class="text-agro-green dark:text-primary flex size-10 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-agro-green dark:text-slate-100 text-xl font-bold leading-tight tracking-tight flex-1 text-center pr-10">Seguimiento y Alertas</h2>
+</div>
+<!-- WhatsApp Integration Card -->
+<div class="p-4">
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-5 shadow-sm border border-agro-green/5">
+<div class="flex items-start justify-between gap-3">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366]">
+<span class="material-symbols-outlined text-3xl">chat</span>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<p class="text-agro-green dark:text-primary text-lg font-bold leading-tight">Conexión a WhatsApp</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-snug">Recibe alertas en lenguaje natural y recomendaciones personalizadas directamente en tu móvil.</p>
+</div>
+<div class="flex items-center self-start">
+<div class="relative inline-flex h-7 w-12 items-center rounded-full bg-primary cursor-pointer transition-colors duration-200">
+<span class="inline-block h-5 w-5 translate-x-6 rounded-full bg-white transition-transform duration-200"></span>
+</div>
+</div>
+</div>
+<div class="h-32 w-full rounded-lg bg-cover bg-center overflow-hidden" data-alt="Modern smartphone showing WhatsApp chat interface with farming tips" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsY9txYwpGobyoWBg8Q1OhfcmwMV72uNgaBvLS2w6UHy-RMZMznJIYojoCeccnI5WElk3ePdCFLErSYFM1W29HASSqJkoxRmeU_lUKqpqzlqcWtivnrvgspL_qKtUqHMu7mUpq3SYR8LD_xbqRgu42lkbKsi5SnnGBfxj-ogaTJXx_-CwjZfI5Gd9L_5UE6Pvc1rOHOWQhufWzKKg6BfB6PIjGLK8qQANs_gTLYHu8vPLa3RPvwUP6rnw3nT3wfw--1pq1geEkd7Q')">
+</div>
+</div>
+</div>
+<!-- Section 1: Alertas Proactivas -->
+<div class="px-4 pt-4 pb-2">
+<div class="flex items-center justify-between">
+<h3 class="text-agro-green dark:text-slate-100 text-[20px] font-bold leading-tight tracking-tight">Alertas Proactivas</h3>
+<span class="text-terracotta text-sm font-medium">Ver todas</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Notification Card 1 -->
+<div class="flex items-stretch gap-4 rounded-xl bg-orange-50 dark:bg-terracotta/10 border border-terracotta/20 p-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-terracotta text-white">
+<span class="material-symbols-outlined material-symbols-fill">thunderstorm</span>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<div class="flex justify-between items-start">
+<p class="text-terracotta text-xs font-bold uppercase tracking-wider">Aviso Meteorológico</p>
+<span class="text-slate-400 text-xs">Ahora</span>
+</div>
+<p class="text-agro-green dark:text-slate-100 text-base font-bold leading-tight">Lluvia fuerte mañana</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-normal">Se esperan precipitaciones intensas en Boyacá. Protege tus semilleros de papa.</p>
+</div>
+</div>
+<!-- Notification Card 2 -->
+<div class="flex items-stretch gap-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-200/50 p-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-500 text-white">
+<span class="material-symbols-outlined">device_thermostat</span>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<div class="flex justify-between items-start">
+<p class="text-blue-600 text-xs font-bold uppercase tracking-wider">Alerta de Helada</p>
+<span class="text-slate-400 text-xs">2h ago</span>
+</div>
+<p class="text-agro-green dark:text-slate-100 text-base font-bold leading-tight">Descenso térmico nocturno</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-normal">Temperaturas bajo 4°C estimadas para la madrugada del jueves.</p>
+</div>
+</div>
+</div>
+<!-- Section 2: Recomendaciones Diarias -->
+<div class="px-4 pt-6 pb-2">
+<h3 class="text-agro-green dark:text-slate-100 text-[20px] font-bold leading-tight tracking-tight">Recomendaciones Diarias</h3>
+</div>
+<div class="px-4 pb-8 space-y-4">
+<!-- Daily Recommendation Card 1 -->
+<div class="group flex flex-col gap-0 overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-agro-green/10 shadow-sm">
+<div class="flex items-center gap-4 p-4 bg-primary/10 border-b border-primary/20">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-agro-green text-white">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<p class="text-agro-green font-bold text-sm">Cuidado de Suelo</p>
+<p class="text-agro-green/70 text-xs">Basado en datos de hoy</p>
+</div>
+</div>
+<div class="p-4">
+<p class="text-agro-green dark:text-slate-100 text-base font-bold leading-tight mb-2">Momento ideal para fertilizar la Papa</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-normal mb-4">La humedad relativa del 75% permitirá una absorción óptima de nutrientes durante las próximas 48 horas.</p>
+<button class="w-full bg-agro-green text-white py-2 rounded-lg font-medium text-sm">Ver detalles técnicos</button>
+</div>
+</div>
+<!-- Daily Recommendation Card 2 -->
+<div class="group flex flex-col gap-0 overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-agro-green/10 shadow-sm">
+<div class="flex items-center gap-4 p-4 bg-primary/10 border-b border-primary/20">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-agro-green text-white">
+<span class="material-symbols-outlined">opacity</span>
+</div>
+<div>
+<p class="text-agro-green font-bold text-sm">Riego Inteligente</p>
+<p class="text-agro-green/70 text-xs">Sugerencia de ahorro</p>
+</div>
+</div>
+<div class="p-4">
+<p class="text-agro-green dark:text-slate-100 text-base font-bold leading-tight mb-2">Ajuste de riego por nubosidad</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-normal">Reduce un 15% el riego programado hoy debido a la alta nubosidad matutina.</p>
+</div>
+</div>
+</div>
+<!-- Bottom Nav Bar -->
+<div class="fixed bottom-0 left-0 right-0 border-t border-agro-green/10 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md px-6 pb-6 pt-3 z-50">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[28px]">home</span>
+<p class="text-[10px] font-medium leading-none">Inicio</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[28px]">potted_plant</span>
+<p class="text-[10px] font-medium leading-none">Cultivos</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-agro-green dark:text-primary" href="#">
+<div class="relative">
+<span class="material-symbols-outlined material-symbols-fill text-[28px]">notifications</span>
+<span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-terracotta border-2 border-white"></span>
+</div>
+<p class="text-[10px] font-bold leading-none">Alertas</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[28px]">bar_chart</span>
+<p class="text-[10px] font-medium leading-none">Análisis</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined text-[28px]">account_circle</span>
+<p class="text-[10px] font-medium leading-none">Perfil</p>
+</a>
+</div>
+</div>
+</body></html>
