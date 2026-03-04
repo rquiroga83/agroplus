@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ProcessingScreen.css';
 
-const ProcessingScreen = ({ onComplete }) => {
+const ProcessingScreen = () => {
+    const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -10,14 +12,14 @@ const ProcessingScreen = ({ onComplete }) => {
             setProgress(old => {
                 if (old >= 100) {
                     clearInterval(interval);
-                    setTimeout(onComplete, 800); // Wait shortly at 100% before transitioning
+                    setTimeout(() => navigate('/dashboard'), 800); // Wait shortly at 100% before transitioning
                     return 100;
                 }
                 return old + 2;
             });
         }, 100);
         return () => clearInterval(interval);
-    }, [onComplete]);
+    }, [navigate]);
 
     // Dynamic status based on progress
     let statusText = "Analizando imágenes de Copernicus...";

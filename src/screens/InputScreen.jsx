@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './InputScreen.css';
@@ -32,7 +33,8 @@ const customMarkerIcon = new L.divIcon({
 const defaultCenter = [4.6097, -74.0817]; // Bogota
 const targetLocation = [4.57, -74.21];
 
-const InputScreen = ({ onComplete, onMenuClick }) => {
+const InputScreen = ({ onMenuClick }) => {
+    const navigate = useNavigate();
     const [hectares, setHectares] = useState('');
     const [validationError, setValidationError] = useState('');
 
@@ -254,7 +256,7 @@ const InputScreen = ({ onComplete, onMenuClick }) => {
             return;
         }
         setValidationError('');
-        onComplete();
+        navigate('/processing');
     };
 
     return (

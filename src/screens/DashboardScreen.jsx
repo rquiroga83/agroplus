@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DashboardScreen.css';
 
 const CROP_DATA = {
@@ -66,7 +67,8 @@ const CROP_DATA = {
     }
 };
 
-const DashboardScreen = ({ onActivateAlerts, onMenuClick }) => {
+const DashboardScreen = ({ onMenuClick }) => {
+    const navigate = useNavigate();
     const [selectedCrop, setSelectedCrop] = useState('papa');
     const cropData = CROP_DATA[selectedCrop];
 
@@ -288,7 +290,7 @@ const DashboardScreen = ({ onActivateAlerts, onMenuClick }) => {
                     </div>
 
                     {/* Call to Action */}
-                    <button className="btn-strategic-cta transition-scale" onClick={onActivateAlerts}>
+                    <button className="btn-strategic-cta transition-scale" onClick={() => navigate('/alerts')}>
                         <span className="material-symbols-outlined">notification_add</span>
                         Agendar plan de tareas y recordatorios
                     </button>

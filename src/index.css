@@ -1,36 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
 
 :root {
-  --primary: #13ec13;
-  --primary-light: rgba(19, 236, 19, 0.2);
-  --primary-dim: rgba(19, 236, 19, 0.1);
-  --agro-dark: #064e3b;
-  --agro-dark-90: rgba(6, 78, 59, 0.9);
-  --terracotta: #c2410c;
-  --terracotta-dim: rgba(194, 65, 12, 0.1);
-  --bg-light: #f6f8f6;
-  --bg-dark: #102210;
-  --text-main: #0f172a;
+  /* Premium Agro Palette */
+  --primary: #00e676;
+  /* Vibrant Tech Green */
+  --primary-light: rgba(0, 230, 118, 0.2);
+  --primary-dim: rgba(0, 230, 118, 0.1);
+  --primary-hover: #00c853;
+  --agro-dark: #022c22;
+  /* Deep Forest Green */
+  --agro-dark-90: rgba(2, 44, 34, 0.9);
+  --terracotta: #d97706;
+  /* Warmer Amber/Terra */
+  --terracotta-dim: rgba(217, 119, 6, 0.1);
+
+  --bg-light: #f8fafc;
+  --bg-dark: #0f172a;
+  --text-main: #1e293b;
   --text-muted: #64748b;
   --border-color: #e2e8f0;
   --white: #ffffff;
 
-  --font-display: 'Public Sans', sans-serif;
+  --font-display: 'Outfit', sans-serif;
 
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  --shadow-up: 0 -10px 20px rgba(0, 0, 0, 0.05);
+  /* Elevated Soft Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(2, 44, 34, 0.08), 0 2px 4px -1px rgba(2, 44, 34, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(2, 44, 34, 0.1), 0 4px 6px -2px rgba(2, 44, 34, 0.05);
+  --shadow-2xl: 0 25px 50px -12px rgba(2, 44, 34, 0.15);
+  --shadow-up: 0 -10px 20px rgba(2, 44, 34, 0.03);
+  --glow-primary: 0 0 15px rgba(0, 230, 118, 0.4);
 }
 
 * {
@@ -78,12 +86,13 @@ body {
   margin: 0 auto;
 }
 
-/* Glassmorphism Utility */
+/* Premium Glassmorphism Utility */
 .glass-header {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--primary-dim);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(2, 44, 34, 0.05);
 }
 
 .header-top {
