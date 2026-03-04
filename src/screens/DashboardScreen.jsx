@@ -120,33 +120,7 @@ const DashboardScreen = ({ onActivateAlerts, onMenuClick }) => {
                     </div>
                 </section>
 
-                {/* Section 3: ¿Dónde sembrar? */}
-                <section className="dash-section">
-                    <h2 className="section-title">
-                        <div className="title-icon-wrapper"><span className="material-symbols-outlined icon-primary">map</span></div>
-                        ¿Dónde sembrar?
-                    </h2>
-                    <div className="map-card">
-                        <div className="map-area">
-                            <div className="heatmap-overlay"></div>
-                            <div className="map-legend">
-                                <div className="legend-item"><div className="dot green"></div><span>Nutrientes Óptimos</span></div>
-                                <div className="legend-item"><div className="dot yellow"></div><span>Suelo Seco</span></div>
-                                <div className="legend-item"><div className="dot red"></div><span>Riesgo Erosión</span></div>
-                            </div>
-                        </div>
-                        <div className="map-footer">
-                            <div className="map-footer-text">
-                                <h4>Lote 'La Esperanza'</h4>
-                                <p>Área: 4.5 Hectáreas</p>
-                            </div>
-                            <button className="text-btn transition-scale">
-                                Ver análisis completo
-                                <span className="material-symbols-outlined arrow-icon">arrow_forward</span>
-                            </button>
-                        </div>
-                    </div>
-                </section>
+
 
                 <div className="action-row">
                     <button className="btn btn-alerts transition-scale" onClick={onActivateAlerts}>

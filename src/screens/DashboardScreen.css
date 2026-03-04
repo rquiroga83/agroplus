@@ -404,7 +404,7 @@
 
     .dash-main {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
         padding: 1rem 2rem 2rem 2rem;
         align-items: stretch;
