@@ -27,18 +27,26 @@ const customMarkerIcon = new L.divIcon({
 const defaultCenter = [4.6097, -74.0817]; // Bogota
 const targetLocation = [4.57, -74.21];
 
-const COLOMBIAN_CROPS = [
-    'Aguacate', 'Algodón', 'Arroz', 'Banano', 'Cacao', 'Café',
-    'Caña de azúcar', 'Frijol', 'Maíz', 'Palma de aceite',
-    'Papa', 'Plátano', 'Sorgo', 'Tomate', 'Yuca'
-];
-
 const InputScreen = ({ onComplete, onMenuClick }) => {
     const [hectares, setHectares] = useState('');
-    const [selectedCrops, setSelectedCrops] = useState([]);
-    const [cropSearch, setCropSearch] = useState('');
-    const [showDropdown, setShowDropdown] = useState(false);
     const [validationError, setValidationError] = useState('');
+
+    // Chat States
+    const [chatMessages, setChatMessages] = useState([
+        { role: 'assistant', content: '¡Hola! Para darte la mejor recomendación, cuéntame: ¿qué cultivos has tenido antes en este terreno y cómo te fue con ellos (rendimiento, plagas, etc.)?' }
+    ]);
+    const [chatInput, setChatInput] = useState('');
+    const [isChatLoading, setIsChatLoading] = useState(false);
+    const [hasAnswered, setHasAnswered] = useState(false);
+    const chatEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [chatMessages, isChatLoading]);
 
     const [isLocating, setIsLocating] = useState(false);
     const [locationFound, setLocationFound] = useState(false);
@@ -125,16 +133,44 @@ const InputScreen = ({ onComplete, onMenuClick }) => {
         }
     };
 
-    const handleAddCrop = (crop) => {
-        if (!selectedCrops.includes(crop)) {
-            setSelectedCrops([...selectedCrops, crop]);
-        }
-        setCropSearch('');
-        setShowDropdown(false);
-    };
+    const handleSendMessage = async () => {
+        if (!chatInput.trim()) return;
 
-    const handleRemoveCrop = (cropToRemove) => {
-        setSelectedCrops(selectedCrops.filter(crop => crop !== cropToRemove));
+        const newMessages = [...chatMessages, { role: 'user', content: chatInput.trim() }];
+        setChatMessages(newMessages);
+        setChatInput('');
+        setIsChatLoading(true);
+
+        try {
+            const apiMessages = newMessages.map(msg => ({ role: msg.role, content: msg.content }));
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: apiMessages })
+            });
+
+            if (response.status === 429) {
+                const data = await response.json();
+                setChatMessages(prev => [...prev, { role: 'assistant', content: `[Aviso]: ${data.error}` }]);
+                setIsChatLoading(false);
+                return;
+            }
+
+            if (!response.ok) throw new Error('Error al conectar con el asistente.');
+
+            const data = await response.json();
+            const aiContent = data.message;
+            setChatMessages(prev => [...prev, { role: 'assistant', content: aiContent }]);
+
+            if (aiContent.includes('Analizar Terreno con IA')) {
+                setHasAnswered(true);
+            }
+        } catch (error) {
+            console.error('Chat error:', error);
+            setChatMessages(prev => [...prev, { role: 'assistant', content: 'Lo siento, tuve un problema al procesar tu mensaje. ¿Podrías intentar de nuevo?' }]);
+        } finally {
+            setIsChatLoading(false);
+        }
     };
 
     const handleAnalyzeClick = () => {
@@ -142,13 +178,13 @@ const InputScreen = ({ onComplete, onMenuClick }) => {
             setValidationError('El tamaño del predio es obligatorio.');
             return;
         }
+        if (!hasAnswered) {
+            setValidationError('Por favor, responde al asistente sobre tus cultivos previos.');
+            return;
+        }
         setValidationError('');
         onComplete();
     };
-
-    const filteredCrops = COLOMBIAN_CROPS.filter(crop =>
-        crop.toLowerCase().includes(cropSearch.toLowerCase()) && !selectedCrops.includes(crop)
-    );
 
     return (
         <div className="input-screen">
@@ -201,48 +237,46 @@ const InputScreen = ({ onComplete, onMenuClick }) => {
                     {validationError && <span className="error-text">{validationError}</span>}
                 </div>
 
-                <div className="form-group relative">
-                    <label className="form-label">Cultivos previos (Historial)</label>
-                    <div className="input-wrapper">
-                        <span className="material-symbols-outlined input-icon-left">potted_plant</span>
-                        <input
-                            type="text"
-                            className="form-input"
-                            placeholder="Buscar cultivo (Café, Cacao, etc)"
-                            value={cropSearch}
-                            onChange={(e) => {
-                                setCropSearch(e.target.value);
-                                setShowDropdown(true);
-                            }}
-                            onFocus={() => setShowDropdown(true)}
-                            onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-                        />
-                        <span className="material-symbols-outlined input-icon-right">expand_more</span>
-                    </div>
-
-                    {showDropdown && filteredCrops.length > 0 && (
-                        <ul className="dropdown-list">
-                            {filteredCrops.map(crop => (
-                                <li key={crop} className="dropdown-item" onClick={() => handleAddCrop(crop)}>
-                                    {crop}
-                                </li>
+                <div className="form-group chat-section">
+                    <label className="form-label">Historial Agrícola (Chat con Asistente) <span className="required-asterisk">*</span></label>
+                    <div className="chat-container">
+                        <div className="chat-messages">
+                            {chatMessages.map((msg, idx) => (
+                                <div key={idx} className={`chat-bubble ${msg.role === 'user' ? 'msg-user' : 'msg-ai'}`}>
+                                    {msg.content}
+                                </div>
                             ))}
-                        </ul>
-                    )}
-
-                    <div className="tags-container">
-                        {selectedCrops.map(crop => (
-                            <span key={crop} className="tag">
-                                {crop}
-                                <span className="material-symbols-outlined tag-close" onClick={() => handleRemoveCrop(crop)}>close</span>
-                            </span>
-                        ))}
+                            {isChatLoading && (
+                                <div className="chat-bubble msg-ai loading-dots">
+                                    <span>.</span><span>.</span><span>.</span>
+                                </div>
+                            )}
+                            <div ref={chatEndRef} />
+                        </div>
+                        <div className="chat-input-area">
+                            <input
+                                type="text"
+                                className="chat-input"
+                                placeholder="Escribe tu respuesta aquí..."
+                                value={chatInput}
+                                onChange={(e) => setChatInput(e.target.value)}
+                                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                                disabled={isChatLoading}
+                            />
+                            <button className="chat-btn" onClick={handleSendMessage} disabled={isChatLoading || !chatInput.trim()}>
+                                <span className="material-symbols-outlined">send</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 {/* Action Footer */}
                 <div className="action-footer with-nav">
-                    <button className="btn-analyze" onClick={handleAnalyzeClick}>
+                    <button
+                        className={`btn-analyze ${!hasAnswered ? 'disabled' : ''}`}
+                        onClick={handleAnalyzeClick}
+                        disabled={!hasAnswered}
+                    >
                         <span className="material-symbols-outlined">psychology</span>
                         <span>Analizar Terreno con IA</span>
                     </button>

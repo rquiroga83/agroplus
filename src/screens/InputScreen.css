@@ -423,3 +423,138 @@
         z-index: 20;
     }
 }
+
+/* --- Chat Section --- */
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    background-color: var(--white);
+    overflow: hidden;
+    height: 300px;
+    margin-top: 0.5rem;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: #f8fafc;
+}
+
+.chat-bubble {
+    max-width: 85%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    border-radius: 1rem;
+}
+
+.msg-ai {
+    align-self: flex-start;
+    background-color: var(--white);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-bottom-left-radius: 0.25rem;
+}
+
+.msg-user {
+    align-self: flex-end;
+    background-color: var(--primary);
+    color: var(--white);
+    border-bottom-right-radius: 0.25rem;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 0.75rem;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+    gap: 0.5rem;
+}
+
+.chat-input {
+    flex: 1;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+    border-color: var(--primary);
+}
+
+.chat-btn {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-lg);
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chat-btn:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+}
+
+.chat-btn:not(:disabled):hover {
+    background-color: var(--agro-dark);
+}
+
+.loading-dots {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.loading-dots span {
+    animation: blink 1.4s infinite both;
+    font-weight: bold;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0.2;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+.btn-analyze.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #94a3b8;
+}
+
+.btn-analyze.disabled:hover {
+    transform: none;
+    background-color: #94a3b8;
+}
