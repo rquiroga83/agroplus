@@ -778,6 +778,25 @@
     background-color: #1e293b;
 }
 
+/* Assuming .plan-card and its hover state are defined elsewhere,
+   inserting the new styles after the expected hover state. */
+.plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+    border-color: #cbd5e1;
+}
+
+.plan-card.selected {
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow-md);
+    transform: scale(1.02);
+}
+
+.plan-card.selected.plan-b {
+    border-color: #10b981;
+    /* Tailwind emerald-500, match status pill green */
+}
+
 /* Desktop Layout */
 @media (min-width: 1024px) {
     .desktop-only {
