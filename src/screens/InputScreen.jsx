@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './InputScreen.css';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import 'leaflet-geosearch/dist/geosearch.css';
+import '@geoman-io/leaflet-geoman-free';
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import * as turf from '@turf/turf';
 
 // Fix missing marker icons for standard Leaflet in React
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -65,21 +70,87 @@ const InputScreen = ({ onComplete, onMenuClick }) => {
                 attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }).addTo(mapInstanceRef.current);
 
-            // Add click listener to map
-            mapInstanceRef.current.on('click', (e) => {
-                const { lat, lng } = e.latlng;
-
-                // Remove old marker if exists
-                if (markerInstanceRef.current) {
-                    markerInstanceRef.current.remove();
+            // Add GeoSearch Control
+            const searchProvider = new OpenStreetMapProvider({
+                params: {
+                    countrycodes: 'co', // Limit to Colombia
                 }
+            });
+            const searchControl = new GeoSearchControl({
+                provider: searchProvider,
+                style: 'button',
+                position: 'topleft',
+                showMarker: true,
+                showPopup: false,
+                autoClose: true,
+                retainZoomLevel: false,
+                animateZoom: true,
+                keepResult: true,
+                searchLabel: 'Buscar municipio o vereda...'
+            });
+            mapInstanceRef.current.addControl(searchControl);
 
-                markerInstanceRef.current = L.marker([lat, lng], { icon: customMarkerIcon }).addTo(mapInstanceRef.current);
+            // Add Geoman Draw Controls
+            mapInstanceRef.current.pm.addControls({
+                position: 'topleft',
+                drawPolygon: true,
+                editMode: true,
+                dragMode: true,
+                cutPolygon: false,
+                removalMode: true,
+                drawMarker: false,
+                drawPolyline: false,
+                drawRectangle: false,
+                drawCircle: false,
+                drawCircleMarker: false,
+                drawText: false,
+            });
 
-                // Optional: Fly to clicked location to center it
-                mapInstanceRef.current.flyTo([lat, lng], mapInstanceRef.current.getZoom(), { animate: true, duration: 0.5 });
+            // Set Geoman language to Spanish
+            mapInstanceRef.current.pm.setLang('es');
 
-                setLocationFound({ lat: lat.toFixed(4), lng: lng.toFixed(4) });
+            // Handle Polygon Drawing for Area Calculation
+            mapInstanceRef.current.on('pm:create', (e) => {
+                const layer = e.layer;
+                if (e.shape === 'Polygon') {
+                    // Remove previous drawn polygons to keep only one
+                    mapInstanceRef.current.eachLayer((l) => {
+                        if (l instanceof L.Polygon && l !== layer) {
+                            l.remove();
+                        }
+                    });
+
+                    // Calculate area using Turf
+                    const geojson = layer.toGeoJSON();
+                    const areaSquareMeters = turf.area(geojson);
+                    const areaHectares = areaSquareMeters / 10000;
+
+                    setHectares(areaHectares.toFixed(2));
+                    setValidationError('');
+
+                    // Center the polygon
+                    mapInstanceRef.current.fitBounds(layer.getBounds());
+                }
+            });
+
+            // Add click listener to map (for quick marker)
+            mapInstanceRef.current.on('click', (e) => {
+                // Only place quick marker if not in drawing mode
+                if (!mapInstanceRef.current.pm.globalDrawModeEnabled()) {
+                    const { lat, lng } = e.latlng;
+
+                    // Remove old marker if exists
+                    if (markerInstanceRef.current) {
+                        markerInstanceRef.current.remove();
+                    }
+
+                    markerInstanceRef.current = L.marker([lat, lng], { icon: customMarkerIcon }).addTo(mapInstanceRef.current);
+
+                    // Optional: Fly to clicked location to center it
+                    mapInstanceRef.current.flyTo([lat, lng], mapInstanceRef.current.getZoom(), { animate: true, duration: 0.5 });
+
+                    setLocationFound({ lat: lat.toFixed(4), lng: lng.toFixed(4) });
+                }
             });
         }
 
@@ -214,6 +285,7 @@ const InputScreen = ({ onComplete, onMenuClick }) => {
 
             {/* Data Section */}
             <div className="data-section">
+                <div className="drag-indicator"></div>
                 <div className="section-header">
                     <h3 className="section-title">Datos del Predio</h3>
                     <span className="step-badge">Paso 1 de 2</span>

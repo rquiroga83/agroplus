@@ -1,19 +1,22 @@
 .input-screen {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100dvh;
+    height: 100vh; /* fallback */
+    overflow: hidden;
 }
 
 .map-section {
     position: relative;
-    height: 45vh;
+    height: 40vh;
     width: 100%;
+    flex-shrink: 0;
     /* overflow hidden breaks leaflet controls, let it handle itself */
 }
 
 .leaflet-map-container {
     height: 100%;
-    min-height: 45vh;
+    min-height: 40vh;
     width: 100%;
     z-index: 1;
     /* Keep map below header but above background */
@@ -24,7 +27,7 @@
 
 .gps-btn-container {
     position: absolute;
-    bottom: 4rem;
+    bottom: 1.5rem;
     left: 0;
     right: 0;
     display: flex;
@@ -38,21 +41,26 @@
     align-items: center;
     gap: 0.5rem;
     height: 3rem;
-    padding: 0 1.5rem;
+    padding: 0 1.375rem;
     background-color: var(--white);
     color: var(--agro-dark);
     border: 2px solid var(--primary);
     border-radius: var(--radius-full);
     font-weight: 700;
-    font-size: 0.875rem;
-    box-shadow: var(--shadow-lg);
+    font-size: 0.8125rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18), 0 0 0 4px rgba(19,236,19,0.12);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .gps-btn .btn-icon {
     font-size: 1.25rem;
     color: var(--primary);
+}
+
+.gps-btn:hover {
+    background-color: var(--white);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2), 0 0 0 5px rgba(19,236,19,0.15);
 }
 
 .gps-btn:active {
@@ -73,15 +81,25 @@
     }
 }
 
+.drag-indicator {
+    width: 2.5rem;
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: var(--radius-full);
+    margin: 0 auto 1.25rem;
+    flex-shrink: 0;
+}
+
 .data-section {
     position: relative;
     flex: 1;
     background-color: var(--bg-light);
     border-radius: 2rem 2rem 0 0;
     margin-top: -2rem;
-    padding: 2rem 1.5rem 12rem 1.5rem;
+    padding: 1.25rem 1.5rem 9rem 1.5rem;
     z-index: 10;
     box-shadow: var(--shadow-up);
+    overflow-y: auto;
 }
 
 .section-header {
@@ -92,20 +110,22 @@
 }
 
 .section-title {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.375rem;
+    font-weight: 800;
     color: var(--agro-dark);
+    letter-spacing: -0.02em;
 }
 
 .step-badge {
-    padding: 0.25rem 0.75rem;
+    padding: 0.3rem 0.875rem;
     background-color: var(--terracotta-dim);
     color: var(--terracotta);
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 800;
     border-radius: var(--radius-full);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(194, 65, 12, 0.15);
 }
 
 .form-group {
@@ -145,20 +165,20 @@
     height: 3.5rem;
     padding: 0 1rem 0 3rem;
     background-color: var(--white);
-    border: 2px solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     border-radius: var(--radius-xl);
     font-family: inherit;
     font-size: 1rem;
     font-weight: 500;
     color: var(--agro-dark);
     transition: all 0.2s ease;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .form-input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-dim);
+    box-shadow: 0 0 0 3px var(--primary-dim), 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .input-error {
@@ -250,41 +270,49 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    padding: 1.5rem;
-    background: linear-gradient(to top, var(--bg-light) 60%, transparent);
+    padding: 1rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, var(--bg-light) 70%, transparent);
     z-index: 20;
-    max-width: 440px;
+    max-width: 480px;
 }
 
 .action-footer.with-nav {
-    bottom: 64px;
+    bottom: 56px;
 }
 
 .btn-analyze {
     width: 100%;
-    height: 4rem;
+    height: 3.75rem;
     border-radius: var(--radius-xl);
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    background-color: var(--agro-dark);
+    background: linear-gradient(135deg, var(--agro-dark) 0%, #0a6b4f 100%);
     color: var(--white);
     border: none;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 14px rgba(6, 78, 59, 0.4);
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: all 0.25s ease;
+    letter-spacing: 0.01em;
+}
+
+.btn-analyze:not(.disabled):hover {
+    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.5);
+    transform: translateY(-1px);
 }
 
 .btn-analyze .material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
     color: var(--primary);
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 .btn-analyze:active {
-    transform: scale(0.95);
+    transform: scale(0.97) translateY(0);
+    box-shadow: 0 2px 8px rgba(6, 78, 59, 0.3);
 }
 
 /* Map Marker Simulation */
@@ -377,38 +405,73 @@
         width: 100vw;
     }
 
+    .drag-indicator {
+        display: none;
+    }
+
     .data-section {
         position: absolute;
         top: 2rem;
         right: 2rem;
-        width: 400px;
+        width: 420px;
         height: calc(100vh - 4rem);
         margin-top: 0;
         border-radius: var(--radius-2xl);
-        box-shadow: var(--shadow-2xl);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
         display: flex;
         flex-direction: column;
-        padding-top: 5rem;
+        padding: 5rem 1.5rem 0 1.5rem;
         z-index: 10;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    /* Accent bar at top of desktop panel */
+    .data-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--agro-dark) 100%);
+        border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    }
+
+    /* Chat section fills remaining vertical space in desktop panel */
+    .data-section .chat-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .data-section .chat-container {
+        flex: 1;
+        height: auto;
+        min-height: 0;
     }
 
     .action-footer {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
         width: 100%;
         transform: none;
+        max-width: none;
         border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
-        background: transparent;
-        padding: 1.5rem 2rem;
+        background: linear-gradient(to top, rgba(255,255,255,1) 70%, transparent);
+        padding: 1rem 0 1.5rem 0;
+        flex-shrink: 0;
     }
 
     .action-footer.with-nav {
-        bottom: 0;
+        bottom: auto;
     }
 
     .header-top {
@@ -434,30 +497,31 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     border-radius: var(--radius-xl);
     background-color: var(--white);
     overflow: hidden;
-    height: 300px;
+    height: 240px;
     margin-top: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
 .chat-messages {
     flex: 1;
-    padding: 1rem;
+    padding: 0.875rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    background-color: #f8fafc;
+    gap: 0.625rem;
+    background-color: #f4f7f4;
 }
 
 .chat-bubble {
-    max-width: 85%;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    line-height: 1.4;
-    border-radius: 1rem;
+    max-width: 88%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8375rem;
+    line-height: 1.5;
+    border-radius: 1.125rem;
 }
 
 .msg-ai {
@@ -466,57 +530,73 @@
     color: var(--text-main);
     border: 1px solid var(--border-color);
     border-bottom-left-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .msg-user {
     align-self: flex-end;
-    background-color: var(--primary);
+    background: linear-gradient(135deg, var(--agro-dark) 0%, #0a6b4f 100%);
     color: var(--white);
     border-bottom-right-radius: 0.25rem;
+    box-shadow: 0 2px 6px rgba(6, 78, 59, 0.25);
 }
 
 .chat-input-area {
     display: flex;
-    padding: 0.75rem;
+    padding: 0.625rem 0.75rem;
     background-color: var(--white);
-    border-top: 1px solid var(--border-color);
+    border-top: 1.5px solid var(--border-color);
     gap: 0.5rem;
+    align-items: center;
 }
 
 .chat-input {
     flex: 1;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-full);
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
+    font-family: inherit;
     outline: none;
-    transition: border-color 0.2s;
+    background-color: #f8fafc;
+    transition: all 0.2s;
 }
 
 .chat-input:focus {
     border-color: var(--primary);
+    background-color: var(--white);
+    box-shadow: 0 0 0 2px var(--primary-dim);
 }
 
 .chat-btn {
-    background-color: var(--primary);
+    background: linear-gradient(135deg, var(--agro-dark) 0%, #0a6b4f 100%);
     color: var(--white);
     border: none;
-    border-radius: var(--radius-lg);
-    width: 2.5rem;
+    border-radius: var(--radius-full);
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(6, 78, 59, 0.3);
+}
+
+.chat-btn .material-symbols-outlined {
+    font-size: 1.125rem;
 }
 
 .chat-btn:disabled {
-    background-color: var(--border-color);
+    background: var(--border-color);
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .chat-btn:not(:disabled):hover {
-    background-color: var(--agro-dark);
+    box-shadow: 0 4px 10px rgba(6, 78, 59, 0.4);
+    transform: scale(1.05);
 }
 
 .loading-dots {
@@ -554,12 +634,141 @@
 }
 
 .btn-analyze.disabled {
-    opacity: 0.5;
+    opacity: 0.55;
     cursor: not-allowed;
-    background-color: #94a3b8;
+    background: #94a3b8;
+    box-shadow: none;
 }
 
 .btn-analyze.disabled:hover {
     transform: none;
-    background-color: #94a3b8;
+    box-shadow: none;
 }
+
+/* --- GeoSearch Overrides --- */
+.leaflet-control-geosearch {
+    z-index: 1000;
+}
+
+/* Button trigger — match Geoman control size (30px × 30px) */
+.leaflet-control-geosearch a.leaflet-bar-part {
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+/* Expanded form container */
+.leaflet-control-geosearch form {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    overflow: hidden;
+}
+
+.leaflet-control-geosearch input.glass {
+    border: none;
+    outline: none;
+    font-size: 0.8125rem;
+    padding: 0 0.75rem;
+    height: 30px;
+    width: 55vw;
+    max-width: 260px;
+    border-radius: var(--radius-lg);
+    font-family: inherit;
+    color: var(--agro-dark);
+}
+
+/* Reset button inside form */
+.leaflet-control-geosearch form .reset {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.leaflet-control-geosearch .results {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    margin-top: 4px;
+}
+
+.leaflet-control-geosearch .results>* {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leaflet-control-geosearch .results>*:last-child {
+    border-bottom: none;
+}
+
+.leaflet-control-geosearch .results>.active,
+.leaflet-control-geosearch .results> :hover {
+    background: #f1f5f9;
+    cursor: pointer;
+}
+
+/* --- Container Positioning --- */
+.leaflet-top {
+    top: 60px !important;
+    /* Move all top map controls safely below the app header */
+}
+
+@media (min-width: 1024px) {
+    .leaflet-top {
+        top: 80px !important;
+        /* On desktop push controls below the gradient header */
+    }
+
+    /* Geosearch bar in topleft: give it a fixed width so it doesn't overflow */
+    .leaflet-control-geosearch form {
+        max-width: 280px;
+        min-width: 200px;
+    }
+
+    .leaflet-control-geosearch input.glass {
+        width: 200px;
+        max-width: 200px;
+    }
+}
+
+/* Force vertical stacking of controls */
+.leaflet-top.leaflet-left {
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    /* Let clicks pass through empty space */
+}
+
+.leaflet-top.leaflet-left .leaflet-control {
+    pointer-events: auto;
+    /* Re-enable clicks on controls */
+    margin-bottom: 10px;
+    margin-left: 10px;
+    /* Consistent left margin */
+    float: none !important;
+    /* Prevent side-by-side floating */
+}
+
+/* Ensure the geosearch container acts as a block */
+.leaflet-control-geosearch {
+    clear: both !important;
+}
+
+/* --- Geoman Overrides --- */
