@@ -25,43 +25,96 @@ const DashboardScreen = ({ onActivateAlerts, onMenuClick }) => {
                         <span className="badge-text">Top Recomendados</span>
                     </div>
 
-                    <div className="crops-list">
-                        <div className="crop-card">
-                            <div className="crop-icon-box">
-                                <span className="material-symbols-outlined">restaurant</span>
-                            </div>
-                            <div className="crop-info">
-                                <div className="crop-header">
-                                    <h3>Papa</h3>
-                                    <span className="success-rate">90% Éxito</span>
+                    <div className="plans-container">
+                        {/* Plan A */}
+                        <div className="plan-card plan-a">
+                            <div className="plan-header">
+                                <div className="plan-title-row">
+                                    <h3>🥔 Papa</h3>
+                                    <div className="score-wrapper">
+                                        <span className="success-rate">90% Éxito</span>
+                                    </div>
                                 </div>
-                                <div className="progress-bg"><div className="progress-fill highlight" style={{ width: '90%' }}></div></div>
+
+                                <div className="monoculture-indicator">
+                                    <div className="status-pill red">
+                                        <span className="dot"></span>
+                                        <span className="pill-text">Saturación Alta: Riesgo de sobreoferta</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="plan-body">
+                                <ul className="info-list">
+                                    <li>
+                                        <span className="material-symbols-outlined icon-blue">local_shipping</span>
+                                        <span>A 15 km del acopio más cercano</span>
+                                    </li>
+                                    <li>
+                                        <span className="material-symbols-outlined icon-gray">add_road</span>
+                                        <span>Acceso por vía secundaria</span>
+                                    </li>
+                                    <li>
+                                        <span className="material-symbols-outlined icon-green">trending_up</span>
+                                        <span>$120.000/carga <strong className="trend-up">⬆️</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="plan-footer">
+                                <p className="resilience-title">Resiliencia Climática a 5 Años</p>
+                                <div className="resilience-timeline">
+                                    <div className="timeline-segment safe" title="2025: Óptimo">2025</div>
+                                    <div className="timeline-segment warning" title="2027: Estrés Medio">2027</div>
+                                    <div className="timeline-segment danger" title="2030: Estrés Alto">2030+</div>
+                                </div>
+                                <p className="resilience-text">Viabilidad a largo plazo disminuye por aumento de temperatura proyectado.</p>
                             </div>
                         </div>
 
-                        <div className="crop-card">
-                            <div className="crop-icon-box">
-                                <span className="material-symbols-outlined">eco</span>
-                            </div>
-                            <div className="crop-info">
-                                <div className="crop-header">
-                                    <h3>Yuca</h3>
-                                    <span className="success-rate">82% Éxito</span>
+                        {/* Plan B */}
+                        <div className="plan-card plan-b">
+                            <div className="plan-header">
+                                <div className="plan-title-row">
+                                    <h3>🌽 Maíz</h3>
+                                    <div className="score-wrapper">
+                                        <span className="success-rate">85% Éxito</span>
+                                    </div>
                                 </div>
-                                <div className="progress-bg"><div className="progress-fill" style={{ width: '82%' }}></div></div>
-                            </div>
-                        </div>
 
-                        <div className="crop-card">
-                            <div className="crop-icon-box">
-                                <span className="material-symbols-outlined">local_cafe</span>
-                            </div>
-                            <div className="crop-info">
-                                <div className="crop-header">
-                                    <h3>Café</h3>
-                                    <span className="success-rate">75% Éxito</span>
+                                <div className="monoculture-indicator">
+                                    <div className="status-pill green">
+                                        <span className="dot"></span>
+                                        <span className="pill-text">Baja presencia: Excelente oportunidad</span>
+                                    </div>
                                 </div>
-                                <div className="progress-bg"><div className="progress-fill" style={{ width: '75%' }}></div></div>
+                            </div>
+
+                            <div className="plan-body">
+                                <ul className="info-list">
+                                    <li>
+                                        <span className="material-symbols-outlined icon-blue">local_shipping</span>
+                                        <span>Recolecta local disponible</span>
+                                    </li>
+                                    <li>
+                                        <span className="material-symbols-outlined icon-gray">add_road</span>
+                                        <span>Vía principal a 5 km</span>
+                                    </li>
+                                    <li>
+                                        <span className="material-symbols-outlined icon-green">trending_flat</span>
+                                        <span>$85.000/carga <strong className="trend-neutral">➖</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="plan-footer">
+                                <p className="resilience-title">Resiliencia Climática a 5 Años</p>
+                                <div className="resilience-timeline">
+                                    <div className="timeline-segment safe" title="2025: Óptimo">2025</div>
+                                    <div className="timeline-segment safe" title="2027: Óptimo">2027</div>
+                                    <div className="timeline-segment safe" title="2030: Óptimo">2030+</div>
+                                </div>
+                                <p className="resilience-text">Cultivo de alta resiliencia térmica, apto para proyecciones climáticas futuras.</p>
                             </div>
                         </div>
                     </div>
