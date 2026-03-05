@@ -173,6 +173,12 @@
     gap: 0.5rem;
 }
 
+.plan-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .info-list li {
     display: flex;
     align-items: center;
@@ -202,6 +208,10 @@
     margin-top: 0.5rem;
     padding-top: 1rem;
     border-top: 1px dashed var(--border-color);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* In case the footer itself also needs to stretch to push the button */
 }
 
 .resilience-title {
@@ -843,5 +853,311 @@
 
     .dash-section {
         width: 100%;
+    }
+}
+
+/* Persistent Explanatory Texts (Context Boxes) */
+.explanation-box {
+    background-color: rgba(0, 230, 118, 0.05);
+    /* very light primary tint */
+    border-left: 3px solid var(--primary);
+    padding: 0.75rem 1rem;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.explanation-box.margin-bottom {
+    margin-bottom: 1.5rem;
+}
+
+/* Actionable Recommendation Texts */
+.recommendation-box {
+    background-color: rgba(59, 130, 246, 0.05);
+    /* very light blue tint */
+    border-left: 3px solid #3b82f6;
+    /* Tailwind blue-500 */
+    padding: 0.75rem 1rem;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    font-size: 0.75rem;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.recommendation-box .material-symbols-outlined {
+    font-size: 1.125rem;
+    color: #3b82f6;
+    flex-shrink: 0;
+}
+
+.recommendation-box.margin-bottom {
+    margin-bottom: 1.5rem;
+}
+
+.recommendation-box.warning {
+    background-color: rgba(245, 158, 11, 0.05);
+    /* light amber tint */
+    border-left-color: #f59e0b;
+    /* Tailwind amber-500 */
+}
+
+.recommendation-box.warning .material-symbols-outlined {
+    color: #f59e0b;
+}
+
+.resilience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Secondary Descriptive Texts */
+.metric-subtitle {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+/* Detailed Report Modal Styles */
+.report-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 23, 42, 0.75);
+    /* var(--agro-dark) with opacity */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.report-modal-content {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    overflow: hidden;
+    /* Keep rounded corners when scrolling */
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-light);
+    /* light header bg */
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    /* light theme text */
+    margin: 0;
+}
+
+.btn-close-modal {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-full);
+    transition: all 0.2s ease;
+}
+
+.btn-close-modal:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    /* light theme hover */
+    color: var(--text-main);
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    /* Allow body to take remaining space */
+}
+
+/* Custom Scrollbar for Modal Body */
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    /* Light theme scrollbar */
+    border-radius: 10px;
+}
+
+.report-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--border-color);
+    /* Light theme border */
+}
+
+.report-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.report-section h3,
+.report-conclusion h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.report-section h3 .material-symbols-outlined,
+.report-conclusion h3 .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.report-section p,
+.report-conclusion p {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.report-section p strong,
+.report-conclusion p strong {
+    color: var(--agro-dark);
+    /* Dark green for emphasis in light theme */
+    font-weight: 700;
+}
+
+.report-conclusion {
+    background: linear-gradient(135deg, rgba(0, 230, 118, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    /* Light background gradient */
+    border-left: 4px solid var(--primary);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.modal-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+    /* Light footer */
+}
+
+/* Modal Buttons */
+.btn-outline-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-full);
+    /* match other pills */
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline-primary .material-symbols-outlined {
+    font-size: 1.125rem;
+}
+
+.margin-top-md {
+    margin-top: 1rem;
+}
+
+.plan-footer .btn-outline-primary {
+    margin-top: auto;
+    /* Pushes the button to the absolute bottom of the footer */
+}
+
+.w-full {
+    width: 100%;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--primary-hover);
+}
+
+.btn-primary.w-full {
+    width: 100%;
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
