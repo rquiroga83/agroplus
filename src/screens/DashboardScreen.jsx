@@ -41,7 +41,9 @@ const CROP_DATA = {
             marketReasoning: 'A pesar del alto rendimiento biológico, el sistema alerta sobre un **Riesgo de Sobreoferta (Monocultivo)**. La visión satelital multiespectral indica que gran parte de las hectáreas vecinas han arado para sembrar lo mismo. Históricamente, cuando la saturación local supera el 50%, el precio de carga en el acopio local cae en promedio un 18%. Te recomendamos buscar contratos de futuros con supermercados o transformar el producto (cuarta gama) para esquivar la fluctuación del mercado en plaza.',
             climateReasoning: 'En el frente climático, nos enfrentamos a dos retos: **70% de probabilidad de La Niña** y un **Déficit Hídrico Inicial**. Esto significa que tendrás poco agua para hacer germinar la semilla, pero demasiada agua cuando la planta esté floreciendo. Por ende, la recomendación crítica es **conseguir riego suplementario en Abril** (para la germinación) y **construir/limpiar zanjas de drenaje profundo para Junio** (para evitar la pudrición por asfixia radicular provocada por La Niña).',
             conclusion: 'Es un cultivo de alto rendimiento comercial pero de **riesgo climático moderado-alto** para este semestre. Requiere manejo experto del agua.'
-        }
+        },
+        currentDateMarker: '20%',
+        cycleInfo: 'Nos encontramos en la fase final de preparación del suelo. Prioridad esta semana: Aplicar las últimas enmiendas calcáreas (cal) para nivelar el pH del suelo antes de la inminente siembra.'
     },
     maiz: {
         id: 'maiz',
@@ -81,7 +83,9 @@ const CROP_DATA = {
             marketReasoning: 'El mercado actual presenta una **Ventana de Oportunidad**. Los indicadores de teledetección (NDVI de predios a 10km a la redonda) muestran una baja intención de siembra de maíz este semestre (preferencia masiva por papa). Al haber escasez local en el tiempo de cosecha (Julio), tendrás poder de negociación directo con los silos y compradores de la región, pudiendo fijar el precio por encima del soporte de $85.000 la carga.',
             climateReasoning: 'Climáticamente, es el cultivo ideal para este semestre en tu finca. El pronóstico prevé **lluvias iniciales fuertes (75mm)** que superan el requerimiento del maíz (70mm) para germinar, ahorrándote costos de riego. Además, la planta soporta perfectamente el **30% de probabilidad de sequía** tardía que pronostica el ENSO (El Niño fase neutral-seca). La recomendación de usar abono orgánico (mulch) es puramente preventiva para maximizar el grosor de la mazorca en caso de que la sequía se extienda más de 15 días.',
             conclusion: 'El maíz es el **cultivo estratégico y seguro** para esta temporada. Minimiza los riesgos de inversión agrícola y garantiza la venta.'
-        }
+        },
+        currentDateMarker: '32%',
+        cycleInfo: 'Etapa de Siembra en curso. Verifica que la humedad del suelo a 5 cm de profundidad sea la adecuada antes de instalar la semilla. El pronóstico actual de lluvia beneficia este proceso.'
     }
 };
 
@@ -303,7 +307,19 @@ const DashboardScreen = ({ onMenuClick }) => {
                                         <div className={`phase-date ${phase.active ? 'highlight' : ''}`}>{phase.date}</div>
                                     </div>
                                 ))}
+
+                                {/* Today Red Marker */}
+                                <div className="current-date-marker" style={{ left: cropData.currentDateMarker }}>
+                                    <div className="current-date-label">Hoy</div>
+                                    <div className="current-date-line"></div>
+                                </div>
                             </div>
+                        </div>
+
+                        {/* Additional info for the current phase */}
+                        <div className="cycle-info-box">
+                            <span className="material-symbols-outlined icon-blue">info</span>
+                            <p>{cropData.cycleInfo}</p>
                         </div>
 
                         {/* Market Projection under Harvest */}

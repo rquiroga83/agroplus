@@ -638,6 +638,65 @@
     display: none;
 }
 
+/* Today Line Marker */
+.current-date-marker {
+    position: absolute;
+    top: -1.5rem;
+    bottom: -1rem;
+    /* Extend below the track */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.current-date-label {
+    background-color: #ef4444;
+    /* Red */
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.current-date-line {
+    width: 2px;
+    flex-grow: 1;
+    background-color: #ef4444;
+    border-radius: 1px;
+}
+
+/* Cycle Info Box */
+.cycle-info-box {
+    background-color: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.cycle-info-box p {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.cycle-info-box .icon-blue {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
 .market-projection-box {
     display: flex;
     justify-content: flex-end;
