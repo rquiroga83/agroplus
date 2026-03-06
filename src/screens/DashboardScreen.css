@@ -66,6 +66,13 @@
     margin-top: 0.5rem;
 }
 
+@media (min-width: 1024px) {
+    .plans-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 .plan-card {
     background-color: var(--white);
     border-radius: var(--radius-2xl);
@@ -86,6 +93,13 @@
 .plan-b {
     box-shadow: var(--shadow-sm);
     background-color: #f8fafc;
+}
+
+.plan-c {
+    box-shadow: var(--shadow-sm);
+    background-color: #fffbeb;
+    /* Light yellow background */
+    border: 1px solid #fde68a;
 }
 
 .plan-badge-wrapper {
@@ -797,6 +811,91 @@
     font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
+}
+
+/* Tooltip Styles */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip-trigger {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 4px;
+    font-weight: 600;
+}
+
+.tooltip-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--white);
+    color: var(--text-main);
+    text-align: left;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    width: 260px;
+    z-index: 50;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.tooltip-container.tooltip-hoverable:hover .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.tooltip-content::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--white) transparent transparent transparent;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.05));
+}
+
+.tooltip-header {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.tooltip-body {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.tooltip-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.tooltip-link:hover {
+    text-decoration: underline;
 }
 
 .bar-track {

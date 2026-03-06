@@ -37,13 +37,13 @@ const CROP_DATA = {
         monocultureText: 'Análisis satelital detecta que el 65% de los predios vecinos cultivarán papa. Esto puede causar caída de precios locales por sobreoferta al momento de cosecha.',
         detailedReport: {
             title: 'Informe Técnico: Viabilidad de Papa Sabanera',
-            intro: 'La Papa Sabanera es un cultivo tradicionalmente fuerte en tu región, destacando por su alta adaptabilidad a los suelos franco-arenosos presentes en tu parcela. El algoritmo de viabilidad le otorga un **90% de éxito predictivo** basado en la calidad actual de tu tierra y la altitud geográfica térmica, lo cual provee las horas de frío exactas que el tubérculo necesita para su engrosamiento.',
+            intro: 'La Papa Sabanera es un cultivo tradicionalmente fuerte en tu región, destacando por su alta adaptabilidad a los suelos franco-arenosos presentes en tu parcela. El análisis indica una **Aptitud Biofísica Alta** basada en la calidad actual de tu tierra y la altitud geográfica térmica, lo cual provee las horas de frío exactas que el tubérculo necesita para su engrosamiento.',
             marketReasoning: 'A pesar del alto rendimiento biológico, el sistema alerta sobre un **Riesgo de Sobreoferta (Monocultivo)**. La visión satelital multiespectral indica que gran parte de las hectáreas vecinas han arado para sembrar lo mismo. Históricamente, cuando la saturación local supera el 50%, el precio de carga en el acopio local cae en promedio un 18%. Te recomendamos buscar contratos de futuros con supermercados o transformar el producto (cuarta gama) para esquivar la fluctuación del mercado en plaza.',
             climateReasoning: 'En el frente climático, nos enfrentamos a dos retos: **70% de probabilidad de La Niña** y un **Déficit Hídrico Inicial**. Esto significa que tendrás poco agua para hacer germinar la semilla, pero demasiada agua cuando la planta esté floreciendo. Por ende, la recomendación crítica es **conseguir riego suplementario en Abril** (para la germinación) y **construir/limpiar zanjas de drenaje profundo para Junio** (para evitar la pudrición por asfixia radicular provocada por La Niña).',
             conclusion: 'Es un cultivo de alto rendimiento comercial pero de **riesgo climático moderado-alto** para este semestre. Requiere manejo experto del agua.'
         },
         currentDateMarker: '20%',
-        cycleInfo: 'Nos encontramos en la fase final de preparación del suelo. Prioridad esta semana: Aplicar las últimas enmiendas calcáreas (cal) para nivelar el pH del suelo antes de la inminente siembra.'
+        cycleInfo: 'Nos encontramos en la fase final de preparación del suelo. Prioridad esta semana: Aplicar las últimas <span class="tooltip-container tooltip-hoverable"><strong class="tooltip-trigger">enmiendas calcáreas (cal)</strong><span class="tooltip-content"><span class="tooltip-header"><span class="material-symbols-outlined icon-green" style="font-size: 14px; margin-right: 4px; vertical-align: middle;">storefront</span>Índice de Precios SIPSA (UPRA)</span><span class="tooltip-body">Costo Estimado en tu municipio:<br/><strong style="color: var(--primary); font-size: 1.1em;">$22.000 - $25.000</strong> / Bulto 50kg.<br/><a href="https://upra.gov.co/es-co/Paginas/SIPSA.aspx" target="_blank" rel="noopener noreferrer" class="tooltip-link">Ver boletín detallado ↗</a></span></span></span> para nivelar el pH del suelo antes de la inminente siembra.'
     },
     maiz: {
         id: 'maiz',
@@ -79,13 +79,55 @@ const CROP_DATA = {
         monocultureText: 'Análisis satelital indica baja intención de siembra de maíz en tu vereda. Tienes una ventana de oportunidad comercial alta.',
         detailedReport: {
             title: 'Informe Técnico: Viabilidad de Maíz Tradicional',
-            intro: 'El Maíz Tradicional presenta una excelente tasa de **85% de éxito predictivo**. Aunque su rentabilidad neta por hectárea es estadísticamente menor que la papa en tiempos de vacas gordas, es un cultivo infinitamente más seguro y robusto. Las raíces profundas del maíz aprovecharán de maravilla la estructura de tu lote.',
+            intro: 'El Maíz Tradicional presenta unas **Condiciones de Cultivo Óptimas**. Aunque su rentabilidad neta por hectárea es estadísticamente menor que la papa en tiempos de vacas gordas, es un cultivo infinitamente más seguro y robusto. Las raíces profundas del maíz aprovecharán de maravilla la estructura de tu lote.',
             marketReasoning: 'El mercado actual presenta una **Ventana de Oportunidad**. Los indicadores de teledetección (NDVI de predios a 10km a la redonda) muestran una baja intención de siembra de maíz este semestre (preferencia masiva por papa). Al haber escasez local en el tiempo de cosecha (Julio), tendrás poder de negociación directo con los silos y compradores de la región, pudiendo fijar el precio por encima del soporte de $85.000 la carga.',
             climateReasoning: 'Climáticamente, es el cultivo ideal para este semestre en tu finca. El pronóstico prevé **lluvias iniciales fuertes (75mm)** que superan el requerimiento del maíz (70mm) para germinar, ahorrándote costos de riego. Además, la planta soporta perfectamente el **30% de probabilidad de sequía** tardía que pronostica el ENSO (El Niño fase neutral-seca). La recomendación de usar abono orgánico (mulch) es puramente preventiva para maximizar el grosor de la mazorca en caso de que la sequía se extienda más de 15 días.',
             conclusion: 'El maíz es el **cultivo estratégico y seguro** para esta temporada. Minimiza los riesgos de inversión agrícola y garantiza la venta.'
         },
         currentDateMarker: '32%',
         cycleInfo: 'Etapa de Siembra en curso. Verifica que la humedad del suelo a 5 cm de profundidad sea la adecuada antes de instalar la semilla. El pronóstico actual de lluvia beneficia este proceso.'
+    },
+    platano: {
+        id: 'platano',
+        name: 'Plátano Hartón',
+        text: 'La siembra a <strong>principios de abril</strong> permite que el periodo de mayor demanda hídrica (floración) coincida con los picos de lluvia de Octubre-Noviembre, maximizando el peso del racimo.',
+        weather: [
+            { type: 'dry', left: '0%', width: '15%', title: 'Abril: Siembra con lluvias iniciales' },
+            { type: 'rain', left: '15%', width: '60%', title: 'Mayo-Nov: Desarrollo vegetativo y floración con temporada de lluvias' },
+            { type: 'dry', left: '75%', width: '25%', title: 'Dic-Feb: Llenado de fruto y cosecha' }
+        ],
+        axis: [
+            { left: '10%', label: 'Abril' },
+            { left: '35%', label: 'Julio' },
+            { left: '60%', label: 'Oct-Nov' },
+            { left: '85%', label: 'Feb' }
+        ],
+        phases: [
+            { type: 'prep', left: '10%', icon: 'agriculture', label: 'Siembra', date: 'Abril', active: false },
+            { type: 'dev', left: '35%', icon: 'grass', label: 'Desarrollo', date: 'Mayo-Sep', active: true },
+            { type: 'sowing', left: '60%', icon: 'local_florist', label: 'Floración', date: 'Oct-Nov', active: false },
+            { type: 'harvest', left: '85%', icon: 'compost', label: 'Cosecha', date: 'Feb', active: false }
+        ],
+        market: {
+            status: 'green',
+            icon: 'trending_up',
+            text: '<strong>Proyección Alcista:</strong> Alta demanda regional y exportación.'
+        },
+        risks: {
+            enso: { probability: 40, text: "<strong>40% probabilidad de vientos fuertes</strong> en Agosto-Septiembre.", alertType: 'warning', recommendation: 'Asegúrate de implementar tutorado (apuntalamiento) en las plantas con racimos en desarrollo para evitar el volcamiento.' },
+            water: { rain: 85, required: 90, alert: "Humedad casi óptima, monitorear en verano.", alertType: 'safe', recommendation: 'Conservar la hojarasca alrededor del pseudotallo para retener humedad en los meses secos.' }
+        },
+        resilienceRec: 'El Plátano Hartón muestra buena resiliencia ante aumentos moderados de temperatura, siempre que se garantice riego o conservación de humedad.',
+        monocultureText: 'Análisis indica mercado estable. No hay riesgo de saturación en la región a corto plazo.',
+        detailedReport: {
+            title: 'Informe Técnico: Viabilidad de Plátano Hartón',
+            intro: 'El Plátano Hartón presenta una **Aptitud Alta**. Este cultivo perenne se adapta muy bien a la altitud y humedad de la zona, ofreciendo una fuente de ingresos más constante una vez establecido el ciclo de producción de la plantación.',
+            marketReasoning: 'El mercado para el Plátano Hartón es **Altamente Estable**. A diferencia de los cultivos semestrales, el plátano tiene una demanda constante durante todo el año tanto para consumo local como para envíos a centros urbanos principales. Hay gran interés de Agroindustrias para snacks.',
+            climateReasoning: 'El cultivo aprovechará las lluvias bimodales de la región. El principal riesgo está en los **vientos fuertes** que suelen presentarse a finales de agosto. Es vital el manejo cultural (deshoje) y el tutorado de las matas paridas para evitar pérdidas por volcamiento físico.',
+            conclusion: 'Una opción excelente a **mediano y largo plazo** que diversifica el riesgo en la finca frente a cultivos de ciclo corto.'
+        },
+        currentDateMarker: '45%',
+        cycleInfo: 'Nos encontramos en etapa de desarrollo vegetativo. Es crucial realizar labores de <strong>deshoje y descalcete</strong> para prevenir el desarrollo de la Sigatoka Negra aprovechando la entrada de luz solar.'
     }
 };
 
@@ -138,7 +180,7 @@ const DashboardScreen = ({ onMenuClick }) => {
                                 <div className="plan-title-row">
                                     <h3>🥔 Papa</h3>
                                     <div className="score-wrapper">
-                                        <span className="success-rate">90% Éxito</span>
+                                        <span className="success-rate">Aptitud Alta</span>
                                     </div>
                                 </div>
 
@@ -171,6 +213,14 @@ const DashboardScreen = ({ onMenuClick }) => {
                                         </div>
                                     </li>
                                 </ul>
+                                <button
+                                    className="btn-primary margin-top-md w-full"
+                                    style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.75rem', fontSize: '0.85rem' }}
+                                    onClick={(e) => { e.stopPropagation(); alert('Iniciando postulación para Venta Directa (Ley 2046)... Redirigiendo al motor de matchmaking.'); }}
+                                >
+                                    <span className="material-symbols-outlined">handshake</span>
+                                    Postular esta cosecha para venta directa al Estado (ICBF/PAE)
+                                </button>
                             </div>
 
                             <div className="plan-footer">
@@ -206,7 +256,7 @@ const DashboardScreen = ({ onMenuClick }) => {
                                 <div className="plan-title-row">
                                     <h3>🌽 Maíz</h3>
                                     <div className="score-wrapper">
-                                        <span className="success-rate">85% Éxito</span>
+                                        <span className="success-rate">Óptimo</span>
                                     </div>
                                 </div>
 
@@ -256,6 +306,73 @@ const DashboardScreen = ({ onMenuClick }) => {
                                     <span>{CROP_DATA.maiz.resilienceRec}</span>
                                 </div>
                                 <button className="btn-outline-primary margin-top-md w-full" onClick={(e) => { e.stopPropagation(); setSelectedCrop('maiz'); handleOpenReport(); }}>
+                                    <span className="material-symbols-outlined">description</span> Ver Informe Detallado
+                                </button>
+                            </div>
+                        </div>
+                        {/* Plan C (Plátano) */}
+                        <div
+                            className={`plan-card plan-c ${selectedCrop === 'platano' ? 'selected' : ''}`}
+                            onClick={() => setSelectedCrop('platano')}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <div className="plan-header">
+                                <div className="plan-title-row">
+                                    <h3>🍌 Plátano Hartón</h3>
+                                    <div className="score-wrapper">
+                                        <span className="success-rate">Aptitud Alta</span>
+                                    </div>
+                                </div>
+
+                                <div className="monoculture-indicator">
+                                    <div className="status-pill green">
+                                        <span className="dot"></span>
+                                        <span className="pill-text">Alta Demanda: Mercado Estable</span>
+                                    </div>
+                                    <span className="metric-subtitle margin-top-sm" style={{ display: 'block', marginTop: '4px' }}>
+                                        {CROP_DATA.platano.monocultureText}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="plan-body">
+                                <ul className="info-list">
+                                    <li>
+                                        <span className="material-symbols-outlined icon-blue">local_shipping</span>
+                                        <span>Recolecta local disponible</span>
+                                    </li>
+                                    <li>
+                                        <span className="material-symbols-outlined icon-gray">add_road</span>
+                                        <span>Vía principal a 5 km</span>
+                                    </li>
+                                    <li>
+                                        <span className="material-symbols-outlined icon-green">trending_up</span>
+                                        <div>
+                                            <span>$45.000/racimo <strong className="trend-up">⬆️</strong></span>
+                                            <span className="metric-subtitle">Venta promedio en finca.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="plan-footer">
+                                <div className="resilience-header">
+                                    <p className="resilience-title">Resiliencia Climática a 5 Años</p>
+                                </div>
+                                <p className="explanation-box">
+                                    Proyección de cómo este cultivo soportará los cambios climáticos esperados para tu región en la próxima media década.
+                                </p>
+                                <div className="resilience-timeline">
+                                    <div className="timeline-segment safe" title="2025: Óptimo">2025</div>
+                                    <div className="timeline-segment safe" title="2027: Óptimo">2027</div>
+                                    <div className="timeline-segment warning" title="2030: Estrés Medio">2030+</div>
+                                </div>
+                                <p className="resilience-text">Cultivo perenne. Resiliencia moderada frente a estrés hídrico extremo.</p>
+                                <div className="recommendation-box">
+                                    <span className="material-symbols-outlined">verified_user</span>
+                                    <span>{CROP_DATA.platano.resilienceRec}</span>
+                                </div>
+                                <button className="btn-outline-primary margin-top-md w-full" onClick={(e) => { e.stopPropagation(); setSelectedCrop('platano'); handleOpenReport(); }}>
                                     <span className="material-symbols-outlined">description</span> Ver Informe Detallado
                                 </button>
                             </div>
@@ -319,7 +436,7 @@ const DashboardScreen = ({ onMenuClick }) => {
                         {/* Additional info for the current phase */}
                         <div className="cycle-info-box">
                             <span className="material-symbols-outlined icon-blue">info</span>
-                            <p>{cropData.cycleInfo}</p>
+                            <p dangerouslySetInnerHTML={{ __html: cropData.cycleInfo }}></p>
                         </div>
 
                         {/* Market Projection under Harvest */}
